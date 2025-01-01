@@ -1,0 +1,30 @@
+-- Create Customers table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    CustomerName VARCHAR(255),
+    City VARCHAR(255)
+);
+
+-- Create Sales table (with foreign key referencing Customers)
+CREATE TABLE Sales (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    ProductID VARCHAR(20),
+    Quantity INT,
+    OrderDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Insert sample data into Customers
+INSERT INTO Customers (CustomerID, CustomerName, City) VALUES
+(101, 'Alice Johnson', 'New York'),
+(102, 'Bob Williams', 'Los Angeles'),
+(103, 'Charlie Brown', 'Chicago');
+
+-- Insert sample data into Sales
+INSERT INTO Sales (OrderID, CustomerID, ProductID, Quantity, OrderDate) VALUES
+(1, 101, 'A123', 2, '2024-01-15'),
+(2, 102, 'B456', 1, '2024-01-15'),
+(3, 101, 'C789', 3, '2024-01-16'),
+(4, 103, 'A123', 1, '2024-01-17'),
+(5, 102, 'A123', 2, '2024-01-18');

@@ -1,0 +1,40 @@
+-- Add a new customer:
+INSERT INTO Customers (CustomerID, CustomerName, City) VALUES (104, 'David Lee', 'Houston');
+
+-- Get all customers from New York:
+SELECT * FROM Customers WHERE City = 'New York';
+
+-- Change Bob Williams' city to San Francisco:
+UPDATE Customers SET City = 'San Francisco' WHERE CustomerID = 102;
+
+-- Delete customer with ID 103:
+DELETE FROM Customers WHERE CustomerID = 103;
+
+-- Convert customer names to uppercase:
+SELECT UPPER(CustomerName) FROM Customers;
+
+-- Get the length of customer names:
+SELECT CustomerName, LENGTH(CustomerName) AS NameLength FROM Customers;
+
+-- Get the month from the order date:
+SELECT OrderID, MONTH(OrderDate) AS OrderMonth FROM Sales;
+
+-- Get the year from the order date:
+SELECT OrderID, YEAR(OrderDate) AS OrderYear FROM Sales;
+
+-- Format date for display
+SELECT OrderID, DATE_FORMAT(OrderDate, '%M %d, %Y') AS FormattedDate FROM Sales;
+
+-- Calculate the average quantity ordered:
+SELECT AVG(Quantity) AS AverageQuantity FROM Sales;
+
+-- Calculate the total quantity of a specific product sold:
+SELECT SUM(Quantity) FROM Sales WHERE ProductID = 'A123';
+
+-- Assign a category based on the quantity ordered:
+SELECT OrderID, Quantity,
+    CASE
+        WHEN Quantity > 2 THEN 'Large Order'
+        ELSE 'Small Order'
+    END AS OrderCategory
+FROM Sales;
